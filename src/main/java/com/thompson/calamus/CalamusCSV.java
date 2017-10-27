@@ -43,21 +43,15 @@ public final class CalamusCSV {
 
 	@SneakyThrows(CalamusCSVException.class)
 	private static <T> T processRow(CSVRecord record, Class<T> clazz) {
-		try {
 
-			//todo generalize creating new instance
-			final T returnObject =  clazz.newInstance();
+		final T returnObject = ReflectionUtil.getInstanceOfClassByNoArgumentConstructor(clazz);
 
-			final Field[] fields = clazz.getDeclaredFields();
+		final Field[] fields = clazz.getDeclaredFields();
 
-			Arrays.stream(fields)
-					.forEach(field -> processField(field, record, returnObject));
+		Arrays.stream(fields)
+				.forEach(field -> processField(field, record, returnObject));
 
-			return returnObject;
-
-		} catch (InstantiationException | IllegalAccessException e) {
-			throw new ReflectionException(ReflectionException.ReflectionError.INSTANTIATION_ERROR, clazz.getName(), e);
-		}
+		return returnObject;
 	}
 
 	@SneakyThrows(CalamusCSVException.class)

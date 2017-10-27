@@ -3,6 +3,7 @@ package com.thompson.calamus.util;
 import com.thompson.calamus.annotation.ColumnName;
 import com.thompson.calamus.exception.CalamusCSVException;
 import com.thompson.calamus.exception.NoSuchColumnException;
+import lombok.NonNull;
 import org.apache.commons.csv.CSVRecord;
 
 import java.lang.reflect.Field;
@@ -12,7 +13,7 @@ import java.lang.reflect.Field;
  */
 public final class CSVUtil {
 
-	public static Object parseFieldValueFromRow(Field field, CSVRecord row) throws CalamusCSVException {
+	public static Object parseFieldValueFromRow(@NonNull Field field, @NonNull CSVRecord row) throws CalamusCSVException {
 
 		String fieldName = field.getName();
 		Class fieldType = field.getType();
