@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/calamus-csv.iml" filepath="$PROJECT_DIR$/.idea/modules/calamus-csv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/calamus-csv_main.iml" filepath="$PROJECT_DIR$/.idea/modules/calamus-csv_main.iml" group="calamus-csv" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/calamus-csv_test.iml" filepath="$PROJECT_DIR$/.idea/modules/calamus-csv_test.iml" group="calamus-csv" />
+    </modules>
+  </component>
+</project>
