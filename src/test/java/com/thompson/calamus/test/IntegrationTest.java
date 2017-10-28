@@ -4,11 +4,13 @@ import com.thompson.calamus.CalamusCSV;
 import com.thompson.calamus.exception.CalamusCSVException;
 import com.thompson.calamus.test.model.integration.TestObjectsModel;
 import com.thompson.calamus.test.model.integration.TestPrimitivesModel;
+import com.thompson.calamus.test.util.TestUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -16,17 +18,17 @@ import java.util.List;
  */
 public class IntegrationTest {
 
-	public IntegrationTest(){
-		objResult1 = new TestObjectsModel(true, Byte.parseByte("120"), 'v', 12.787586967,
-				45.67F, -91, 1928475658393944049L, (short)34);
-		objResult2 = new TestObjectsModel(false, Byte.parseByte("56"), ':', -56.72345234,
-				-911F, 34456, 2234852347522002L, (short)-3);
-		objResult3 = new TestObjectsModel(true, Byte.parseByte("127"), 'S', 0.23865865943,
-				6.789F, 2345, 29347527635942L, (short)1);
-		primResult1 = new TestPrimitivesModel(true, Byte.parseByte("120"), 'v', 12.787586967,
-				45.67F, -91, 1928475658393944049L, (short)34);
-		primResult2 = new TestPrimitivesModel(false, Byte.parseByte("56"), ':', -56.72345234,
-				-911F, 34456, 2234852347522002L, (short)-3);
+	public IntegrationTest() throws ParseException {
+		objResult1 = new TestObjectsModel(true, Byte.parseByte("120"), 'v', 12.78758696700, 45.67F, -91, 1928475658393940000L,
+				(short)34, TestUtil.parseDateFromString("EEE, MMM dd, yyyy", "Fri, Oct 27, 2017"));
+		objResult2 = new TestObjectsModel(false, Byte.parseByte("56"), ':', -56.7234523400, -911F, 34456, 2234852347522000L,
+				(short)-3, TestUtil.parseDateFromString("EEE, MMM dd, yyyy", "Sun, Oct 22, 2017"));
+		objResult3 = new TestObjectsModel(true, Byte.parseByte("127"), 'S', 0.23865865943, 6.789F, 2345, 29347527635942L, (short)1,
+				TestUtil.parseDateFromString("EEE, MMM dd, yyyy", "Wed, Nov 01, 2017"));
+		primResult1 = new TestPrimitivesModel(true, Byte.parseByte("120"), 'v', 12.78758696700,
+				45.67F, -91, 1928475658393940000L, (short)34);
+		primResult2 = new TestPrimitivesModel(false, Byte.parseByte("56"), ':', -56.72345234000,
+				-911F, 34456, 2234852347522000L, (short)-3);
 		primResult3 = new TestPrimitivesModel(true, Byte.parseByte("127"), 'S', 0.23865865943,
 				6.789F, 2345, 29347527635942L, (short)1);
 	}

@@ -44,14 +44,14 @@ public final class CalamusCSV {
 	@SneakyThrows(CalamusCSVException.class)
 	private static <T> T processRow(CSVRecord record, Class<T> clazz) {
 
-		final T returnObject = ReflectionUtil.getInstanceOfClassByNoArgumentConstructor(clazz);
+		final T modelInstance = ReflectionUtil.getInstanceOfClassByNoArgumentConstructor(clazz);
 
 		final Field[] fields = clazz.getDeclaredFields();
 
 		Arrays.stream(fields)
-				.forEach(field -> processField(field, record, returnObject));
+				.forEach(field -> processField(field, record, modelInstance));
 
-		return returnObject;
+		return modelInstance;
 	}
 
 	@SneakyThrows(CalamusCSVException.class)

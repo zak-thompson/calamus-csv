@@ -1,12 +1,18 @@
 package com.thompson.calamus.util;
 
 import com.thompson.calamus.annotation.ColumnName;
+import com.thompson.calamus.annotation.DateMetadata;
 import com.thompson.calamus.exception.CalamusCSVException;
+import com.thompson.calamus.exception.DateException;
 import com.thompson.calamus.exception.NoSuchColumnException;
 import lombok.NonNull;
 import org.apache.commons.csv.CSVRecord;
 
 import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *  Created by Zak Thompson on 9/24/2017.
@@ -60,8 +66,28 @@ public final class CSVUtil {
 			return Long.valueOf(value);
 		} else if (fieldType.equals(Short.class) || fieldType.equals(short.class)) {
 			return Short.valueOf(value);
+		} else if (fieldType.equals(Date.class)) {
+			return getDateFromField(field, value);
 		} else {
 			return value;
 		}
 	}
+
+	private static Date getDateFromField(Field field, String value) throws DateException {
+
+		if (!field.isAnnotationPresent(DateMetadata.class)) {
+			throw new DateException(field);
+		}
+
+		try {
+
+			String formatString = field.getDeclaredAnnotation(DateMetadata.class).dateTimeFormatterPattern();
+			DateFormat dateFormat = new SimpleDateFormat(formatString);
+			return dateFormat.parse(value);
+
+		} catch (ParseException | IllegalArgumentException e) {
+			throw new DateException(e);
+		}
+	}
+
 }

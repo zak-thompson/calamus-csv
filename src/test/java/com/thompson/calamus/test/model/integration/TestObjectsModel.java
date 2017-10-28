@@ -1,6 +1,9 @@
 package com.thompson.calamus.test.model.integration;
 
+import com.thompson.calamus.annotation.DateMetadata;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * Created by Zak Thompson on 10/5/2017.
@@ -13,7 +16,7 @@ public class TestObjectsModel {
 	}
 
 	public TestObjectsModel(Boolean aBoolean, Byte aByte, Character aCharacter, Double aDouble, Float aFloat,
-							Integer aInteger, Long aLong, Short aShort) {
+							Integer aInteger, Long aLong, Short aShort, Date date) {
 		this.aBoolean = aBoolean;
 		this.aByte = aByte;
 		this.aCharacter = aCharacter;
@@ -22,6 +25,7 @@ public class TestObjectsModel {
 		this.aInteger = aInteger;
 		this.aLong = aLong;
 		this.aShort = aShort;
+		this.date = date;
 	}
 
 	//setter with multiple args to test no reflection errors
@@ -37,4 +41,6 @@ public class TestObjectsModel {
 	private Integer aInteger;
 	private Long aLong;
 	private Short aShort;
+	@DateMetadata(dateTimeFormatterPattern = "EEE, MMM dd, yyyy" )
+	private Date date;
 }
